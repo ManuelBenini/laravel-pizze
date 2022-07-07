@@ -20,7 +20,7 @@
             </div>
         @endif
 
-        <form action="{{route('admin.pizzas.update', $pizza)}}" method="POST">
+        <form id="pizzaEditForm" action="{{route('admin.pizzas.update', $pizza)}}" method="POST">
             @csrf
             @method('PUT')
 
@@ -39,6 +39,8 @@
                 <p class="text-danger">{{$message}}</p>
             @enderror
 
+            <p id="error-nome" class="text-danger"></p>
+
             <div class="mb-3">
               <label for="descrizione" class="form-label">Ingredienti</label>
               <input
@@ -54,6 +56,8 @@
                 <p class="text-danger">{{$message}}</p>
             @enderror
 
+            <p id="error-descrizione" class="text-danger"></p>
+
             <div class="mb-3">
                 <label for="prezzo" class="form-label">Prezzo</label>
                 <input
@@ -68,6 +72,8 @@
             @error('prezzo')
                 <p class="text-danger">{{$message}}</p>
             @enderror
+
+            <p id="error-prezzo" class="text-danger"></p>
 
             <div class="mb-3">
                 <select name="popolarita" id="popolarita">
@@ -95,6 +101,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
+            <a onclick="return confirm('Sei sicuro di voler annullare tutte le modifiche?')" href="{{route('admin.pizzas.index')}}" class="btn btn-danger">Torna alla pagina principale</a>
         </form>
 
     </div>

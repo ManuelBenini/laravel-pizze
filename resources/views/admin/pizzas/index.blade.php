@@ -30,7 +30,7 @@
                     <tr>
                         <th scope="row">{{$pizza->id}}</th>
                         <td>{{$pizza->nome}}</td>
-                        <td>{{$pizza->prezzo}}</td>
+                        <td>{{$pizza->prezzo}}&euro;</td>
 
                         @if ($pizza->popolarita === null)
                             <td>0</td>

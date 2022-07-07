@@ -24,7 +24,7 @@
                 <tr>
                     <th scope="row">{{$pizza->id}}</th>
                     <td>{{$pizza->nome}}</td>
-                    <td>{{$pizza->prezzo}}</td>
+                    <td>{{$pizza->prezzo}}&euro;</td>
                     <td>{{$pizza->descrizione}}</td>
 
                     @if ($pizza->popolarita === null)

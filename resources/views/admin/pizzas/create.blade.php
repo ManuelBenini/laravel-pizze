@@ -20,7 +20,7 @@
             </div>
         @endif
 
-        <form action="{{route('admin.pizzas.store')}}" method="POST">
+        <form id="pizzaCreateForm" action="{{route('admin.pizzas.store')}}" method="POST">
             @csrf
 
             <div class="mb-3">
@@ -38,6 +38,8 @@
                 <p class="text-danger">{{$message}}</p>
             @enderror
 
+            <p id="error-nome" class="text-danger"></p>
+
             <div class="mb-3">
               <label for="descrizione" class="form-label">Ingredienti</label>
               <input
@@ -53,6 +55,8 @@
                 <p class="text-danger">{{$message}}</p>
             @enderror
 
+            <p id="error-descrizione" class="text-danger"></p>
+
             <div class="mb-3">
                 <label for="prezzo" class="form-label">Prezzo</label>
                 <input
@@ -67,6 +71,8 @@
             @error('prezzo')
                 <p class="text-danger">{{$message}}</p>
             @enderror
+
+            <p id="error-prezzo" class="text-danger"></p>
 
             <div class="mb-3">
                 <select name="popolarita" id="popolarita">
