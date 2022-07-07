@@ -64,7 +64,7 @@
         {{-- Immagine --}}
         <div class="image mb-3">
             <label for="immagine" class="form-label"><h4>Aggiungi immagine</h4></label>
-            <input type="file" class="form-control" id="immagine" name="immagine">
+            <input type="file" class="form-control immagine" id="immagine" name="immagine" accept="image/*">
         </div>
 
         @error('immagine')

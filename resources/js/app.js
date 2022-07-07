@@ -44,7 +44,6 @@ $().ready(function(){
             $('#error-nome').hide();
             $('#error-descrizione').hide();
             $('#error-prezzo').hide();
-            $('#error-immagine').hide();
 
             // Campo nome
                 if($('#nome').val().length === 0){
@@ -79,21 +78,6 @@ $().ready(function(){
                 }else{
                     $('#descrizione').removeClass('is-invalid')
                 }
-            //
-
-            // Campo immagine
-                // if($('#immagine').val().length === 0){
-                //     $('#error-immagine').show('slow').text('Il campo immagine è obbligatorio').fadeOut(4000);
-                //     $('#immagine').addClass('is-invalid');
-                //     errors = true;
-                // }
-                // else if($('#immagine').val().length < 5){
-                //     $('#error-immagine').show('slow').text('Il campo immagine deve avere minimo 5 caratteri').fadeOut(4000);
-                //     $('#immagine').addClass('is-invalid');
-                //     errors = true;
-                // }else{
-                //     $('#immagine').removeClass('is-invalid')
-                // }
             //
 
             // Campo prezzo
