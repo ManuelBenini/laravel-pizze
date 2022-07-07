@@ -16,6 +16,7 @@
             <th scope="col">Descrizione</th>
             <th scope="col">Popolarità</th>
             <th scope="col">Vegetariana</th>
+            <th scope="col">Immagine</th>
             <th scope="col">Azioni</th>
             </tr>
         </thead>
@@ -38,6 +39,11 @@
                     <td>Si</td>
                 @else
                     <td>No</td>
+                @endif
+
+                @if ($pizza->immagine)
+                <td>CIAOOO</td>
+                 {{-- <td><img src="{{asset("Image/{$pizza->immagine}")}}" alt=""></td> --}}
                 @endif
 
                 <td>

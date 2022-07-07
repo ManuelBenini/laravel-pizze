@@ -26,6 +26,7 @@ class PizzaRequest extends FormRequest
         return [
             'nome' => 'required|min:3|max:50',
             'descrizione' => 'required|min:5',
+            'immagine' => 'nullable|image|file|size:10000',
             'prezzo' => 'required|max:99.99|numeric',
             'popolarita' => 'nullable',
             'vegetariana' => 'required',
@@ -40,6 +41,9 @@ class PizzaRequest extends FormRequest
             'nome.max' => 'Il campo nome può avere massimo :max caratteri',
             'descrizione.required' => 'Il campo descrizione è obbligatorio',
             'descrizione.min' => 'Il campo descrizione deve avere almeno :min caratteri',
+            'immagine.image' => 'Il file deve essere in formato jpeg, png, bmp, gif, svg, or webp',
+            'immagine.file' => 'Il file non è stato correttamente caricato',
+            'immagine.size' => 'La dimensione del file deve essere inferiore a :size kilobytes',
             'prezzo.required' => 'Il campo prezzo è obbligatorio',
             'prezzo.numeric' => 'Il campo prezzo deve contenere solo numeri',
             'prezzo.max' => 'Il prezzo deve essere inferiore a 100',

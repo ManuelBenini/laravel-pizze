@@ -21,7 +21,7 @@
         </div>
     @endif
 
-    <form id="pizzaCreateForm" action="{{route('admin.pizzas.store')}}" method="POST">
+    <form id="pizzaCreateForm" action="{{route('admin.pizzas.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -57,6 +57,17 @@
         @enderror
 
         <p id="error-descrizione" class="text-danger"></p>
+
+        <div class="image mb-3">
+            <label for="immagine" class="form-label"><h4>Aggiungi immagine</h4></label>
+            <input type="file" class="form-control" id="immagine" name="immagine">
+        </div>
+
+        @error('immagine')
+            <p class="text-danger">{{$message}}</p>
+        @enderror
+
+        <p id="error-immagine" class="text-danger"></p>
 
         <div class="mb-3">
             <label for="prezzo" class="form-label">Prezzo</label>
