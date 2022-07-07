@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <table class="table">
+    <table class="table text-center">
 
         <thead>
             <tr>
@@ -40,14 +40,14 @@
                     @endif
 
                     @if ($pizza->vegetariana)
-                        <td>Si</td>
+                        <td><img src="{{asset('image/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.png')}}" style="width: 35px; height: 35px" alt="logo vegetariano"></td>
                     @else
                         <td>No</td>
                     @endif
 
                     <td>
                         <a href="{{route('admin.pizzas.show', $pizza)}}" class="btn btn-primary">Mostra</a>
-                        <a href="{{route('admin.pizzas.edit', $pizza)}}" class="btn btn-secondary">Modifica</a>
+                        <a href="{{route('admin.pizzas.edit', $pizza)}}" class="btn btn-success">Modifica</a>
 
                         <form
                         class="d-inline"

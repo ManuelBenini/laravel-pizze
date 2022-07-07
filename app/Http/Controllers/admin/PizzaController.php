@@ -40,14 +40,9 @@ class PizzaController extends Controller
     {
         $data = $request->all();
 
-        if($request->file('immagine')){
-            $file = $request->file('immagine');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('image'), $filename);
-            $data['immagine']= $filename;
-        }
-
         $data['slug'] = Pizza::generateSlug($data['nome']);
+
+        $data['immagine'] = $this->imageUploader($request, $data);
 
         $new_pizza = new Pizza;
         $new_pizza->fill($data);
@@ -93,6 +88,8 @@ class PizzaController extends Controller
             $data['slug'] = Pizza::generateSlug($data['nome']);
         }
 
+        $data['immagine'] = $this->imageUploader($request, $data);
+
         $pizza->update($data);
 
         return redirect()->route('admin.pizzas.show', $pizza);
@@ -109,5 +106,17 @@ class PizzaController extends Controller
         $pizza->delete();
 
         return redirect()->route('admin.pizzas.index')->with('delete_success', "La pizza $pizza->nome è stata eliminata correttamente!");
+    }
+
+    public function imageUploader($request, $data){
+        if($request->file('immagine')){
+
+            $file = $request->file('immagine');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('image'), $filename);
+            $data['immagine']= $filename;
+
+            return $data['immagine'];
+        }
     }
 }

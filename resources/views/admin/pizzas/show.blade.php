@@ -4,49 +4,36 @@
 
 @section('content')
 
-        <h1>Pizza {{$pizza->nome}}</h1>
+    <h1 class="text-center mb-3">Pizza {{$pizza->nome}}</h1>
 
-    <table class="table">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card text-center mb-4" style="width: 18rem;">
 
-        <thead>
-            <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Prezzo</th>
-            <th scope="col">Descrizione</th>
-            <th scope="col">Popolarità</th>
-            <th scope="col">Vegetariana</th>
-            <th scope="col">Immagine</th>
-            <th scope="col">Azioni</th>
-            </tr>
-        </thead>
+            {{-- Se esiste un immagine, si inserisce, altrimenti viene usata l'immagine di placeholder --}}
+            @if ($pizza->immagine)
+                <img src="{{asset('image/'.$pizza->immagine)}}" class="card-img-top" alt="Immagine pizza">
+            @else
+                <img src="{{asset('image/scatola_pizza.png')}}" class="card-img-top" alt="Immagine placeholder">
+            @endif
 
-        <tbody>
 
-            <tr>
-                <th scope="row">{{$pizza->id}}</th>
-                <td>{{$pizza->nome}}</td>
-                <td>{{$pizza->prezzo}}&euro;</td>
-                <td>{{$pizza->descrizione}}</td>
+            <div class="card-body">
+                <h5 class="card-title">{{$pizza->nome}}</h5>
+                <p class="card-text">{{$pizza->descrizione}}</p>
+            </div>
 
-                @if ($pizza->popolarita === null)
-                    <td>0</td>
-                @else
-                    <td>{{$pizza->popolarita}}</td>
-                @endif
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">prezzo: {{$pizza->prezzo}}&euro;</li>
+                <li class="list-group-item">Popolarità: {{$pizza->popolarita}}</li>
 
                 @if ($pizza->vegetariana)
-                    <td>Si</td>
+                    <li class="list-group-item">Vegetariana: <img src="{{asset('image/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.png')}}" style="width: 35px; height: 35px" alt="logo vegetariano"></li>
                 @else
-                    <td>No</td>
+                    <li class="list-group-item">Vegetariana: no</li>
                 @endif
 
-                @if ($pizza->immagine)
-                 <td><img src="{{asset('image/'.$pizza->immagine)}}" alt=""></td>
-                @endif
-
-                <td>
-                    <a href="{{route('admin.pizzas.edit', $pizza)}}" class="btn btn-secondary">Modifica</a>
+                <li class="list-group-item">
+                    <a href="{{route('admin.pizzas.edit', $pizza)}}" class="btn btn-success">Modifica</a>
 
                     <form
                     class="d-inline"
@@ -57,13 +44,14 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Cancella</button>
                     </form>
-                </td>
 
-            </tr>
-        </tbody>
+                </li>
 
-        </table>
+            </ul>
 
-        <a href="{{route('admin.pizzas.index')}}">Torna alle pizze</a>
+        </div>
+
+    </div>
+    <a class="text-center d-block btn btn-primary m-auto" style="width: 250px" href="{{route('admin.pizzas.index')}}">Torna alle pizze</a>
 
 @endsection
