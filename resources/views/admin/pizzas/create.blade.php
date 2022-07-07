@@ -27,7 +27,7 @@
               <label for="nome" class="form-label">Nome</label>
               <input
               type="text"
-              class="form-control"
+              class="form-control @error('nome') is-invalid @enderror"
               id="nome"
               name="nome"
               value="{{old('nome')}}"
@@ -42,7 +42,7 @@
               <label for="descrizione" class="form-label">Ingredienti</label>
               <input
               type="text"
-              class="form-control"
+              class="form-control @error('descrizione') is-invalid @enderror"
               id="descrizione"
               name="descrizione"
               value="{{old('descrizione')}}"
@@ -57,7 +57,7 @@
                 <label for="prezzo" class="form-label">Prezzo</label>
                 <input
                 type="text"
-                class="form-control"
+                class="form-control @error('prezzo') is-invalid @enderror"
                 id="prezzo"
                 name="prezzo"
                 value="{{old('prezzo')}}"
@@ -69,14 +69,15 @@
             @enderror
 
             <div class="mb-3">
-                <label for="popolarita" class="form-label">Popolarità</label>
-                <input
-                type="text"
-                class="form-control"
-                id="popolarita"
-                name="popolarita"
-                value="{{old('popolarita')}}"
-                placeholder="inserire popolarità">
+                <select name="popolarita" id="popolarita">
+
+                    <option value="" {{old('popolarita') == null ? 'selected' : ''}}>Non selezionato</option>
+
+                    @for ($c = 1; $c <= 10; $c++)
+                        <option value="{{$c}}" {{old('popolarita') == $c ? 'selected' : ''}}>{{$c}}</option>
+                    @endfor
+
+                </select>
             </div>
 
             @error('popolarita')

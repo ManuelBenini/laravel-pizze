@@ -79,9 +79,17 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PizzaRequest $request, $id)
+    public function update(PizzaRequest $request, Pizza $pizza)
     {
-        //
+        $data = $request->all();
+
+        if($data['nome'] != $pizza->nome){
+            $data['slug'] = Pizza::generateSlug($data['nome']);
+        }
+
+        $pizza->update($data);
+
+        return redirect()->route('admin.pizzas.show', $pizza);
     }
 
     /**

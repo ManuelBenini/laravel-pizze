@@ -33,8 +33,6 @@
                         <td>{{$pizza->popolarita}}</td>
                     @endif
 
-                    <td>{{$pizza->descrizione}}</td>
-
                     @if ($pizza->vegetariana)
                         <td>Si</td>
                     @else
