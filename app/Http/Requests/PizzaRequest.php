@@ -26,7 +26,7 @@ class PizzaRequest extends FormRequest
         return [
             'nome' => 'required|min:3|max:50',
             'descrizione' => 'required|min:5',
-            'immagine' => 'nullable|image|file|size:10000',
+            'immagine' => 'nullable|image|file',
             'prezzo' => 'required|max:99.99|numeric',
             'popolarita' => 'nullable',
             'vegetariana' => 'required',

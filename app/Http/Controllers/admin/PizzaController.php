@@ -40,11 +40,11 @@ class PizzaController extends Controller
     {
         $data = $request->all();
 
-        if($request->file('image')){
-            $file = $request->file('image');
+        if($request->file('immagine')){
+            $file = $request->file('immagine');
             $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('Image'), $filename);
-            $data['image']= $filename;
+            $file-> move(public_path('image'), $filename);
+            $data['immagine']= $filename;
         }
 
         $data['slug'] = Pizza::generateSlug($data['nome']);

@@ -42,8 +42,7 @@
                 @endif
 
                 @if ($pizza->immagine)
-                <td>CIAOOO</td>
-                 {{-- <td><img src="{{asset("Image/{$pizza->immagine}")}}" alt=""></td> --}}
+                 <td><img src="{{asset('image/'.$pizza->immagine)}}" alt=""></td>
                 @endif
 
                 <td>
