@@ -27,4 +27,5 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group(function(){
         Route::get('/', 'PageController@index')->name('index');
+        Route::resource('pizzas', 'PizzaController');
     });

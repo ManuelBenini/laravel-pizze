@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Pizza;
 
 class PizzaController extends Controller
 {
@@ -14,7 +15,8 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        //
+        $pizze = Pizza::orderBy('id', 'DESC')->paginate(10);
+        return view('admin.pizzas.index', compact('pizze'));
     }
 
     /**
@@ -24,7 +26,7 @@ class PizzaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pizzas.create');
     }
 
     /**
@@ -44,9 +46,9 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pizza $pizza)
     {
-        //
+        return view('admin.pizzas.show', compact('pizza'));
     }
 
     /**
@@ -55,9 +57,9 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pizza $pizza)
     {
-        //
+        return view('admin.pizzas.edit', compact('pizza'));
     }
 
     /**
@@ -78,8 +80,8 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pizza $pizza)
     {
-        //
+        $pizza->delete();
     }
 }
