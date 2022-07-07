@@ -27,6 +27,7 @@ class PizzaRequest extends FormRequest
             'nome' => 'required|min:3|max:50',
             'descrizione' => 'required|min:10',
             'prezzo' => 'required|max:99.99|numeric',
+            'popolarita' => 'nullable|max:10|numeric',
             'vegetariana' => 'required',
         ];
     }
@@ -42,6 +43,8 @@ class PizzaRequest extends FormRequest
             'prezzo.required' => 'Il campo prezzo è obbligatorio',
             'prezzo.numeric' => 'Il campo prezzo deve contenere solo numeri',
             'prezzo.max' => 'Il prezzo deve essere inferiore a 100',
+            'popolarita.numeric' => 'Il campo popolarità deve contenere solo numeri',
+            'popolarita.max' => 'La popolarità deve essere inferiore a 10',
         ];
     }
 }

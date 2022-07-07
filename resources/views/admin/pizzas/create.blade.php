@@ -69,6 +69,21 @@
             @enderror
 
             <div class="mb-3">
+                <label for="popolarita" class="form-label">Popolarità</label>
+                <input
+                type="text"
+                class="form-control"
+                id="popolarita"
+                name="popolarita"
+                value="{{old('popolarita')}}"
+                placeholder="inserire popolarità">
+            </div>
+
+            @error('popolarita')
+                <p class="text-danger">{{$message}}</p>
+            @enderror
+
+            <div class="mb-3">
                 <label for="vegetariana" class="form-label">Vegetariana</label>
                 <select name="vegetariana" id="vegetariana">
 
