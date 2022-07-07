@@ -24,6 +24,7 @@
     <form id="pizzaCreateForm" action="{{route('admin.pizzas.store')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
+        {{-- Nome --}}
         <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
             <input
@@ -41,6 +42,7 @@
 
         <p id="error-nome" class="text-danger"></p>
 
+        {{-- Descrizione --}}
         <div class="mb-3">
             <label for="descrizione" class="form-label">Ingredienti</label>
             <input
@@ -58,6 +60,7 @@
 
         <p id="error-descrizione" class="text-danger"></p>
 
+        {{-- Immagine --}}
         <div class="image mb-3">
             <label for="immagine" class="form-label"><h4>Aggiungi immagine</h4></label>
             <input type="file" class="form-control" id="immagine" name="immagine">
@@ -69,6 +72,7 @@
 
         <p id="error-immagine" class="text-danger"></p>
 
+        {{-- Prezzo --}}
         <div class="mb-3">
             <label for="prezzo" class="form-label">Prezzo</label>
             <input
@@ -86,6 +90,7 @@
 
         <p id="error-prezzo" class="text-danger"></p>
 
+        {{-- Popolarità --}}
         <div class="mb-3">
             <select name="popolarita" id="popolarita">
 
@@ -98,10 +103,7 @@
             </select>
         </div>
 
-        @error('popolarita')
-            <p class="text-danger">{{$message}}</p>
-        @enderror
-
+        {{-- Vegetariana --}}
         <div class="mb-3">
             <label for="vegetariana" class="form-label">Vegetariana</label>
             <select name="vegetariana" id="vegetariana">
