@@ -35,15 +35,23 @@
                     <td>
                         <a href="{{route('admin.pizzas.edit', $pizza)}}" class="btn btn-secondary">Modifica</a>
 
-                            <form class="d-inline" action="{{route('admin.pizzas.destroy', $pizza)}}">
-                                <button type="submit" class="btn btn-danger">Cancella</button>
-                            </form>
+                        <form
+                        class="d-inline"
+                        action="{{route('admin.pizzas.destroy', $pizza)}}"
+                        method="POST"
+                        onsubmit="return confirm('sei sicuro di voler eliminare la pizza?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Cancella</button>
+                        </form>
                     </td>
 
                 </tr>
             </tbody>
 
           </table>
+
+          <a href="{{route('admin.pizzas.index')}}">Torna alle pizze</a>
     </div>
 
 @endsection

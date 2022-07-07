@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PizzaRequest;
 use Illuminate\Http\Request;
 use App\Pizza;
 
@@ -35,9 +36,18 @@ class PizzaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PizzaRequest $request)
     {
-        //
+        $data = $request->all();
+
+
+        $data['slug'] = Pizza::generateSlug($data['nome']);
+
+        $new_pizza = new Pizza;
+        $new_pizza->fill($data);
+        $new_pizza->save();
+
+        return redirect()->route('admin.pizzas.show', $new_pizza);
     }
 
     /**
@@ -69,7 +79,7 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PizzaRequest $request, $id)
     {
         //
     }
@@ -83,5 +93,7 @@ class PizzaController extends Controller
     public function destroy(Pizza $pizza)
     {
         $pizza->delete();
+
+        return redirect()->route('admin.pizzas.index')->with('delete_success', "La pizza $pizza->nome è stata eliminata correttamente!");
     }
 }

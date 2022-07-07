@@ -5,6 +5,13 @@
     <div class="container">
         <h1>Lista pizze</h1>
 
+        @if(session('delete_success'))
+            <div class="alert alert-danger d-flex justify-content-between" role="danger">
+                <p>{{session('delete_success')}}</p>
+                <a href="{{route('admin.pizzas.index')}}" class="btn btn-danger">X</a>
+            </div>
+        @endif
+
         <table class="table">
 
             <thead>
@@ -34,7 +41,13 @@
                             <a href="{{route('admin.pizzas.show', $pizza)}}" class="btn btn-primary">Mostra</a>
                             <a href="{{route('admin.pizzas.edit', $pizza)}}" class="btn btn-secondary">Modifica</a>
 
-                            <form class="d-inline" action="{{route('admin.pizzas.destroy', $pizza)}}">
+                            <form
+                            class="d-inline"
+                            action="{{route('admin.pizzas.destroy', $pizza)}}"
+                            method="POST"
+                            onsubmit="return confirm('sei sicuro di voler eliminare la pizza?')">
+                                @csrf
+                                @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Cancella</button>
                             </form>
                         </td>
