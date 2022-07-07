@@ -21,6 +21,12 @@ class PizzasTableSeeder extends Seeder
             $new_pizza->prezzo = $pizza['prezzo'];
             $new_pizza->descrizione = $pizza['ingredienti'];
 
+            if(!array_key_exists('popolarita', $pizza)){
+                $new_pizza->popolarita = null;
+            }else{
+                $new_pizza->popolarita = $pizza['popolarita'];
+            }
+
             if($pizza['vegetariana'] == 'sì'){
                 $pizza['vegetariana'] = true;
             }else{

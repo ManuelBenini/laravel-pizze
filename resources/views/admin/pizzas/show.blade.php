@@ -13,6 +13,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Prezzo</th>
                 <th scope="col">Descrizione</th>
+                <th scope="col">Popolarità</th>
                 <th scope="col">Vegetariana</th>
                 <th scope="col">Azioni</th>
               </tr>
@@ -24,6 +25,14 @@
                     <th scope="row">{{$pizza->id}}</th>
                     <td>{{$pizza->nome}}</td>
                     <td>{{$pizza->prezzo}}</td>
+                    <td>{{$pizza->descrizione}}</td>
+
+                    @if ($pizza->popolarita === null)
+                        <td>0</td>
+                    @else
+                        <td>{{$pizza->popolarita}}</td>
+                    @endif
+
                     <td>{{$pizza->descrizione}}</td>
 
                     @if ($pizza->vegetariana)
