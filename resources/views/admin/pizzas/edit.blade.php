@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', "Modifica pizza $pizza->name")
+@section('title', "Modifica pizza $pizza->nome")
 
 @section('content')
 
-    <h1>Modifica pizza {{$pizza->name}}</h1>
+    <h1>Modifica pizza {{$pizza->nome}}</h1>
 
     @if ($errors->any())
 
@@ -45,7 +45,7 @@
 
         {{-- Descrizione --}}
         <div class="mb-3">
-            <label for="descrizione" class="form-label">Ingredienti</label>
+            <label for="descrizione" class="form-label">Descrizione</label>
             <input
             type="text"
             class="form-control @error('descrizione') is-invalid @enderror"
@@ -112,6 +112,28 @@
                 <option value="0" {{old('vegetariana', $pizza->vegetariana) == 0 ? 'selected' : ''}}>No</option>
                 <option value="1" {{old('vegetariana', $pizza->vegetariana) == 1 ? 'selected' : ''}}>Si</option>
             </select>
+        </div>
+
+        {{-- Ingredienti --}}
+        <div class="mb-3">
+            @foreach ($ingredients as $ingredient)
+                <input
+                    type="checkbox"
+                    name="ingredients[]"
+                    id="ingredient{{ $loop->iteration }}"
+                    value="{{ $ingredient->id }}"
+
+                    @if(!$errors->any() && $pizza->ingredients->contains($ingredient->id))
+                        checked
+                    @elseif(in_array($ingredient->id, old('ingredients',[]) ) )
+                        checked
+                    @endif
+                >
+
+                <label for="ingredient{{ $loop->iteration }}" class="mr-3">{{ $ingredient->nome }}</label>
+            @endforeach
+
+            <p id="error-ingredients" class="text-danger"></p>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

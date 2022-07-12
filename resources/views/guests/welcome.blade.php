@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -79,10 +79,15 @@
                 </div>
             @endif
 
+            <div>
+                <img src="{{asset('image/slider-pizza-mobile.png')}}" alt="slider pizza" style="width: 300px">
+            </div>
+
             <div class="content">
-                <div class="title m-b-md">
+                <div class="title m-b-md ">
                     Pizzeria di Mario
                 </div>
+               
             </div>
         </div>
     </body>

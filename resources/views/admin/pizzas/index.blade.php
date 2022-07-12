@@ -6,7 +6,7 @@
 
     <h1>Lista pizze</h1>
 
-    @if(session('delete_success'))
+    @if(session('pizza_delete_success'))
         <div class="alert alert-danger d-flex justify-content-between" role="danger">
             <p>{{session('delete_success')}}</p>
             <a href="{{route('admin.pizzas.index')}}" class="btn btn-danger">X</a>
@@ -17,12 +17,24 @@
 
         <thead>
             <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Prezzo</th>
-            <th scope="col">Popolarità</th>
-            <th scope="col">Vegetariana</th>
-            <th scope="col">Azioni</th>
+            <th scope="col"><a href="{{route('admin.pizzas.index')}}">ID</a></th>
+            <th scope="col">
+                <a href="{{route('admin.pizzas.index')}}?query=nome">Nome</a>
+            </th>
+
+            <th scope="col">
+                <a href="{{route('admin.pizzas.index')}}?query=prezzo">Prezzo</a>
+            </th>
+
+            <th scope="col">
+                <a href="{{route('admin.pizzas.index')}}?query=popolarita">Popolarità</a>
+            </th>
+
+            <th scope="col">
+                <a href="{{route('admin.pizzas.index')}}?query=vegetariana">Vegetariana</a>
+            </th>
+
+            <th scope="col">Azioni <i class="fa-solid fa-arrow-down"></i></th>
             </tr>
         </thead>
 
@@ -56,7 +68,7 @@
                         onsubmit="return confirm('sei sicuro di voler eliminare la pizza?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Cancella</button>
+                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                         </form>
                     </td>
 

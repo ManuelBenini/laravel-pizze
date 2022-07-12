@@ -24,7 +24,21 @@
 
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">prezzo: {{$pizza->prezzo}}&euro;</li>
-                <li class="list-group-item">Popolarità: {{$pizza->popolarita}}</li>
+                <li class="list-group-item">Popolarità:
+                @if ($pizza->popolarita === null)
+                    <td>0</td>
+                @else
+                    <td>{{$pizza->popolarita}}</td>
+                @endif</li>
+
+                <li class="list-group-item">Ingredienti:
+                    <ul class="text-left">
+                        @foreach ($pizza->ingredients as $ingredient)
+                            <li>{{$ingredient->nome}}</li>
+                        @endforeach
+
+                    </ul>
+                </li>
 
                 @if ($pizza->vegetariana)
                     <li class="list-group-item">Vegetariana: <img src="{{asset('image/13b01a3ed103ff17233aa8dcca6d5313-vegetarian-round-green-badge.png')}}" style="width: 35px; height: 35px" alt="logo vegetariano"></li>
@@ -42,7 +56,7 @@
                     onsubmit="return confirm('sei sicuro di voler eliminare la pizza?')">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Cancella</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                     </form>
 
                 </li>

@@ -44,7 +44,7 @@
 
         {{-- Descrizione --}}
         <div class="mb-3">
-            <label for="descrizione" class="form-label">Ingredienti</label>
+            <label for="descrizione" class="form-label">Descrizione</label>
             <input
             type="text"
             class="form-control @error('descrizione') is-invalid @enderror"
@@ -92,6 +92,7 @@
 
         {{-- Popolarità --}}
         <div class="mb-3">
+            Popolarità:
             <select name="popolarita" id="popolarita">
 
                 <option value="" {{old('popolarita') == null ? 'selected' : ''}}>Non selezionato</option>
@@ -111,6 +112,23 @@
                 <option value="0" {{old('vegetariana') == 0 ? 'selected' : ''}}>No</option>
                 <option value="1" {{old('vegetariana') == 1 ? 'selected' : ''}}>Si</option>
             </select>
+        </div>
+
+        {{-- Ingredienti --}}
+        <div class="mb-3">
+            @foreach ($ingredients as $ingredient)
+                <input
+                    type="checkbox"
+                    name="ingredients[]"
+                    id="ingredient{{ $loop->iteration }}"
+                    value="{{ $ingredient->id }}"
+                    @if(in_array($ingredient->id, old('ingredients',[]) ) ) checked @endif
+                >
+
+                <label for="ingredient{{ $loop->iteration }}" class="mr-3">{{ $ingredient->nome }}</label>
+            @endforeach
+
+            <p id="error-ingredients" class="text-danger"></p>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
