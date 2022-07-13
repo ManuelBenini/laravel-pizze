@@ -40,8 +40,10 @@ class IngredientController extends Controller
     {
         $data = $request->all();
 
-         session(['ingredient' => $data['nome']]);
+        # Variabile di sessione che conserva il nome inserito precedentemente
+        session(['ingredient' => $data['nome']]);
 
+        # Se l'ingrediente esiste, non è possibile inserirlo nuovamente nel database
         if(Ingredient::where('nome', $data['nome'])->first()){
             return redirect()->route('admin.ingredients.create')->with('ingredient_exist', 'L\'ingrediente esiste già');
         }
@@ -88,10 +90,15 @@ class IngredientController extends Controller
     {
         $data = $request->all();
 
+        # Variabile di sessione che conserva il nome inserito precedentemente
         session(['ingredient' => $data['nome']]);
 
-        if(Ingredient::where('nome', $data['nome'])->first()){
-            return redirect()->route('admin.ingredients.edit', $ingredient)->with('ingredient_exist', 'L\'ingrediente esiste già');
+        # Se l'ingrediente esiste, non è possibile inserirlo nuovamente nel database
+        if(!($data['nome'] == $ingredient->nome)){
+
+            if(Ingredient::where('nome', $data['nome'])->first()){
+                return redirect()->route('admin.ingredients.edit', $ingredient)->with('ingredient_exist', 'L\'ingrediente esiste già');
+            }
         }
 
         if($data['nome'] != $ingredient->nome){

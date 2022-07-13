@@ -6,21 +6,7 @@
 
     <h1>Modifica ingrediente {{$ingredient->nome}}</h1>
 
-    @if ($errors->any())
-
-        <div class="alert alert-danger" role="alert">
-
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>
-                        {{$error}}
-                    </li>
-                @endforeach
-            </ul>
-
-        </div>
-    @endif
-
+    {{-- Se si sta rinominando l'ingrediente con il nome di un altro ingrediente esistente, viene restituito un errore --}}
     @if(session('ingredient_exist'))
         <div class="alert alert-danger d-flex justify-content-between" role="danger">
             <p>{{session('ingredient_exist')}}</p>
@@ -44,16 +30,11 @@
             placeholder="Inserire nome">
         </div>
 
-        @error('nome')
-            <p class="text-danger">{{$message}}</p>
-        @enderror
-
+        {{-- Errore gestito con JQuery --}}
         <p id="error-nome" class="text-danger"></p>
 
         <button type="submit" class="btn btn-primary">Submit</button>
         <a onclick="return confirm('Sei sicuro di voler annullare tutte le modifiche?')" href="{{route('admin.ingredients.index')}}" class="btn btn-danger">Torna alla pagina principale</a>
     </form>
-
-
 
 @endsection
